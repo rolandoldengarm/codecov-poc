@@ -2,7 +2,7 @@ version: 2.1
 jobs:
   build:
     docker:
-      - image: circleci/node:jessie-browsers
+      - image: circleci/node:latest-browsers
     environment:
       CI: true
       CODECOV_TOKEN: f913a653-4fee-4054-87a1-6fbba988bcef
@@ -22,7 +22,7 @@ jobs:
             - .
   test:
     docker:
-      - image: circleci/node:jessie-browsers
+      - image: circleci/node:latest-browsers
     steps:
       # Reuse the workspace from the build job
       - attach_workspace:
