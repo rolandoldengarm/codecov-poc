@@ -1,0 +1,44 @@
+version: 2.1
+jobs:
+  build:
+    docker:
+      - image: circleci/node:latest-browsers
+    environment:
+      CI: true
+      CODECOV_TOKEN: f913a653-4fee-4054-87a1-6fbba988bcef
+    steps:
+      - checkout
+      # Install the latest npm - the node Orb takes care of it
+      - run:
+          name: install
+          command: npm ci
+      # Save workspace for subsequent jobs (i.e. test)
+      - persist_to_workspace:
+          root: .
+          paths:
+            - .
+  test:
+    docker:
+      - image: circleci/node:latest-browsers
+    environment:
+      CI: true
+      CODECOV_TOKEN: f913a653-4fee-4054-87a1-6fbba988bcef
+    steps:
+      # Reuse the workspace from the build job
+      - attach_workspace:
+          at: .
+      - run:
+          name: Test
+          command: npm test
+      - run:
+          name: Code cov
+          command: bash <(curl -s https://codecov.io/bash)
+
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - build
+      - test:
+          requires:
+            - build
