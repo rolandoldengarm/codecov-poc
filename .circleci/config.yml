@@ -1,6 +1,6 @@
 version: 2.1
 orbs:
-  node: circleci/node@3.0.0
+  node: circleci/node:lts-browsers
 jobs:
   build:
     environment:
@@ -35,6 +35,9 @@ jobs:
       - run:
           name: Test
           command: npm test
+      - run:
+          name: Code cov
+          command: bash <(curl -s https://codecov.io/bash)
 
 workflows:
   version: 2
