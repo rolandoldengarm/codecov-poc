@@ -9,11 +9,9 @@ jobs:
     steps:
       - checkout
       # Install the latest npm - the node Orb takes care of it
-      - install-npm
-      # Install dependencies - the node Orb take care of installation and dependency caching
-      - install-packages:
-          cache-path: node_modules
-          override-ci-command: npm ci
+      - run:
+          name: install
+          command: npm ci
       - run:
           name: build
           command: npm run build
