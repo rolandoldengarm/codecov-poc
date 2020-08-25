@@ -7,4 +7,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'codecov';
+
+  public newMethod() {
+    const x = 1 / 2;
+    return x;
+  }
 }
