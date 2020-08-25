@@ -20,6 +20,9 @@ jobs:
   test:
     docker:
       - image: circleci/node:latest-browsers
+    environment:
+      CI: true
+      CODECOV_TOKEN: f913a653-4fee-4054-87a1-6fbba988bcef
     steps:
       # Reuse the workspace from the build job
       - attach_workspace:
