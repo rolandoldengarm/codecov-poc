@@ -18,6 +18,11 @@ jobs:
       - run:
           name: build
           command: npm run build
+      # Save workspace for subsequent jobs (i.e. test)
+      - persist_to_workspace:
+          root: .
+          paths:
+            - .
   test:
     docker:
       # The primary container is an instance of the first image listed. The job's commands run in this container.
