@@ -5,6 +5,7 @@ jobs:
   build:
     environment:
       CI: true
+      CODECOV_TOKEN: f913a653-4fee-4054-87a1-6fbba988bcef
     # Reuse Docker container specification given by the node Orb
     executor: node/default
     steps:
